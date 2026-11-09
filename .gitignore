@@ -1,0 +1,48 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Large Model Weights (exceeding GitHub 100MB limit)
+*.h5
+*.hdf5
+*.pkl
+*.pt
+*.pth
+*.ckpt
+server/models/
+models/
+
+# Dataset and uploads
+uploads/
+server/uploads/
+*.png
+*.jpg
+*.jpeg
+!assets/*.png
+!assets/*.jpg
+!docs/*.png
+
+# Mobile and Build artifacts
+*.apk
+*.aab
+build/
+.dart_tool/
+
+# Media files
+*.mp4
+*.avif
+*.eps
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# IDE & OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
