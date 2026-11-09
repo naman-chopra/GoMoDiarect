@@ -42,6 +42,18 @@ flowchart LR
 
 ---
 
+## Prototype In Vivo Optical Capture
+
+To evaluate the optical feasibility of accessible fundus photography, test captures were acquired through the prototype optical assembly (coupling a 20D indirect ophthalmic condensing lens with the sensor and targeted illumination).
+
+<p align="center">
+  <img src="docs/sample_captured_fundus.jpg" alt="Sample Retinal Fundus Capture" width="340" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+  <br>
+  <em><b>Figure 1:</b> Sample retinal fundus capture acquired through the 20D condensing lens optical assembly, demonstrating visible retinal vascular branching across the posterior pole, circular optical aperture framing, and characteristic Purkinje illumination reflections.</em>
+</p>
+
+---
+
 ## Key Features
 
 1. **Portable Optical Capture Hardware:**
@@ -95,7 +107,8 @@ GoMoDiarect/
 │   └── application.dart       # Flutter integration for socket listener and REST calls
 ├── notebooks/                 # Model evaluation and experimentation
 │   └── transfer_learning_evaluation.ipynb # Kaggle/APTOS transfer learning pipeline
-└── docs/                      # Architectural diagrams and hardware notes
+└── docs/                      # Architectural diagrams, sample captures, and hardware notes
+    └── sample_captured_fundus.jpg
 ```
 
 ---
