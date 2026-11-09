@@ -96,6 +96,7 @@ GoMoDiarect/
 ├── .gitignore                 # Excludes heavy binaries, APKs, and model weights
 ├── server/                    # Flask REST inference microservice
 │   ├── app.py                 # Cleaned inference server API (POST /predict, GET /health)
+│   ├── evaluate.py            # Quantitative metric evaluation (QWK, Accuracy, ConfMat)
 │   └── preprocess.py          # Luminance conversion, 3-channel alignment, normalization
 ├── hardware/                  # Edge hardware capture implementation
 │   └── pi_zero/
@@ -106,7 +107,7 @@ GoMoDiarect/
 ├── mobile/                    # Mobile client interface
 │   └── application.dart       # Flutter integration for socket listener and REST calls
 ├── notebooks/                 # Model evaluation and experimentation
-│   └── transfer_learning_evaluation.ipynb # Kaggle/APTOS transfer learning pipeline
+│   └── transfer_learning_evaluation.ipynb # Transfer learning benchmark (adapted from Carlo Lepelaars' baseline)
 └── docs/                      # Architectural diagrams, sample captures, and hardware notes
     └── sample_captured_fundus.jpg
 ```
@@ -183,6 +184,26 @@ cd hardware/pi_zero
 chmod +x startup.sh
 ./startup.sh
 ```
+
+### 4. Offline Model Evaluation & Metrics Verification
+
+To evaluate a trained model checkpoint against holdout ground truth data and compute Quadratic Weighted Kappa (QWK), classification accuracy, and confusion matrices:
+
+```bash
+cd server
+python3 evaluate.py \
+  --model models/effnet_modelB5.h5 \
+  --labels ../data/test.csv \
+  --images ../data/test_images/
+```
+
+---
+
+## Baseline Attribution & Dataset Credits
+
+* **APTOS 2019 Blindness Detection Dataset:** Generously provided by the [Aravind Eye Hospital](https://www.aravind.org/) via Kaggle for diabetic retinopathy research.
+* **Exploratory Model Baseline:** The offline transfer-learning exploration notebook ([`notebooks/transfer_learning_evaluation.ipynb`](notebooks/transfer_learning_evaluation.ipynb)) was adapted from the public Kaggle baseline by **Carlo Lepelaars** (*EfficientNetB5 for the APTOS 2019 competition with Keras*). The GoMoDiarect team adapted this framework to benchmark ImageNet pre-trained backbones (EfficientNet, ResNet), stabilize small-batch training via Group Normalization and RAdam, and export calibrated checkpoint weights into the edge deployment pipeline.
+* **EfficientNet Architecture:** Tan, M., & Le, Q. V. (2019). *EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks.* ICML 2019. [arXiv:1905.11946](https://arxiv.org/abs/1905.11946).
 
 ---
 
